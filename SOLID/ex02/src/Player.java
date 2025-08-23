@@ -5,7 +5,8 @@ public class Player {
         Frame f = new Frame(fileBytes); // pretend decoding
         last = f;
         // draw UI
-        System.out.println("\u25B6 Playing " + fileBytes.length + " bytes");
+        DrawUI di = new DrawUI();
+        di.drawui(fileBytes);
         // cache
         System.out.println("Cached last frame? " + (last!=null));
     }
