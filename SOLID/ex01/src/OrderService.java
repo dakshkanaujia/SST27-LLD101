@@ -1,12 +1,9 @@
 public class OrderService {
-    double taxRate = 0.18;
     EmailClient email = new EmailClient();
-
-    double totalWithTax(double subtotal) {
-        return subtotal + subtotal * taxRate;
-    }
+    TaxService ts = new TaxService();
+    
     void checkout(String customerEmail, double subtotal) {
-        double total = totalWithTax(subtotal);
+        double total = ts.totalWithTax(subtotal);
         email.send(customerEmail, "Thanks! Your total is " + total);
         System.out.println("Order stored (pretend DB).");
     }
