@@ -1,10 +1,10 @@
 
 public class Demo05 {
-    static int areaAfterResize(Rectangle r){
-        r.setWidth(5); r.setHeight(4); return r.area();
-    }
     public static void main(String[] args) {
-        System.out.println(areaAfterResize(new Rectangle())); // 20
-        System.out.println(areaAfterResize(new Square()));    // 16 (!) violates expectation
+        ShapeAreaCalculator rect = new ShapeAreaCalculator(new Rectangle(), 10, 15);
+        ShapeAreaCalculator sq = new ShapeAreaCalculator(new Square(), 10, 10);
+
+        System.out.println("Area resized of Rectangle = " + rect.area());
+        System.out.println("Area resized of Square = " + sq.area());
     }
 }
