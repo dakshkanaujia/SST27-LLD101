@@ -1,5 +1,2 @@
-public class Bird {
-     void fly(){
-         System.out.println("Flap!"); 
-        } 
-    }
+public class Bird extends CanFly{
+}
