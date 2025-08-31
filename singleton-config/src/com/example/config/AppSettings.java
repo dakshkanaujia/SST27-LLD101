@@ -10,12 +10,20 @@ import java.util.Properties;
  * not thread-safe, reload allowed anytime, mutable global state, reflection+serialization-friendly.
  */
 public class AppSettings implements Serializable {
+    private static volatile AppSettings instance;
     private final Properties props = new Properties();
 
-    public AppSettings() { } // should not be public for true singleton
+    private AppSettings() { }
 
     public static AppSettings getInstance() {
-        return new AppSettings(); // returns a fresh instance (bug)
+        if(instance == null){
+            synchronized(AppSettings.class){
+                if(instance == null){
+                    return instance;
+                }
+            }
+        }
+        return instance;
     }
 
     public void loadFromFile(Path file) {
