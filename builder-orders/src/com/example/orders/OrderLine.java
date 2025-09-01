@@ -1,7 +1,7 @@
 package com.example.orders;
 
 public class OrderLine {
-    private String sku;
+    private final String sku;
     private int quantity;
     private int unitPriceCents;
 
@@ -15,5 +15,5 @@ public class OrderLine {
     public int getQuantity() { return quantity; }
     public int getUnitPriceCents() { return unitPriceCents; }
 
-    public void setQuantity(int q) { this.quantity = q; }
+    // public void setQuantity(int q) { this.quantity = q; } // mutable: fixed by removing setter
 }
