@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Client {
   public static void main(String[] args) {
-    // Sample legacy data from three sources
     List<EmployeeCSV> csvRows = List.of(
       new EmployeeCSV("101,John,Doe,john.doe@acme.com"),
       new EmployeeCSV("102,Sarah,Lee,sarah.lee@acme.com")
@@ -20,9 +19,11 @@ public class Client {
       new EmployeeLDAP(Map.of("uid","302","givenName","Elena","sn","Garcia","mail","elena.garcia@example.org"))
     );
 
-    // TODO: Wrap each legacy object with the right adapter and collect into one list
+    // ✅ Use Adapters
     List<Employee> all = new ArrayList<>();
-
+    for (EmployeeCSV e : csvRows) all.add(new EmployeeCSVAdapter(e));
+    for (EmployeeDB e : dbRows) all.add(new EmployeeDBAdapter(e));
+    for (EmployeeLDAP e : ldapRows) all.add(new EmployeeLDAPAdapter(e));
 
     EmployeePrinter.print(all);
   }
